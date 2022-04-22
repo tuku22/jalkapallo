@@ -5,7 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
@@ -13,42 +15,47 @@ public class Ottelu {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int Id;
+	private int id;
+	private String kello;
 	private String kjoukkue;
 	private String vjoukkue;
 	private int tulos;
-
 	private String maalintekija;
 	
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name = "kenttaid")
+	@JsonIgnoreProperties("ottelut")
 	private Kentta kentta;
+
 	
-	public Ottelu(String kjoukkue, String vjoukkue, int tulos, Kentta kentta2, String maalintekija) {
-		super();
-		this.kjoukkue = kjoukkue;
-		this.vjoukkue = vjoukkue;
-		this.tulos = tulos;
-	
-		this.maalintekija = maalintekija;
-	}
 
 	public Ottelu() {
 		super();
 	}
 
-	public Ottelu(int id, String kjoukkue, String vjoukkue, int tulos, String kentta, String maalintekija) {
+	public Ottelu(int id, String kello, String kjoukkue, String vjoukkue, int tulos, String maalintekija, Kentta kentta) {
 		super();
-		Id = id;
+		this.id = id;
+		this.kello = kello;
 		this.kjoukkue = kjoukkue;
 		this.vjoukkue = vjoukkue;
 		this.tulos = tulos;
-		
 		this.maalintekija = maalintekija;
+		this.kentta = kentta;
+	}
+	
+	public Ottelu(String kello, String kjoukkue, String vjoukkue, int tulos, String maalintekija, Kentta kentta) {
+		super();
+		this.kello = kello;
+		this.kjoukkue = kjoukkue;
+		this.vjoukkue = vjoukkue;
+		this.tulos = tulos;
+		this.maalintekija = maalintekija;
+		this.kentta = kentta;
 	}
 
 	public int getId() {
-		return Id;
+		return id;
 	}
 
 	public String getKjoukkue() {
@@ -69,7 +76,7 @@ public class Ottelu {
 	}
 
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public void setKjoukkue(String kjoukkue) {
@@ -89,14 +96,24 @@ public class Ottelu {
 	public void setMaalintekija(String maalintekija) {
 		this.maalintekija = maalintekija;
 	}
+	
+	public String getKello() {
+		return kello;
+	}
+
+	public void setKello(String kello) {
+		this.kello = kello;
+	}
+
 
 	@Override
 	public String toString() {
-		return "Ottelu [Id=" + Id + ", kjoukkue=" + kjoukkue + ", vjoukkue=" + vjoukkue + ", tulos=" + tulos
+		return "Ottelu [Id=" + id + ", kjoukkue=" + kjoukkue + ", vjoukkue=" + vjoukkue + ", tulos=" + tulos
 				+ ", kentta=" + kentta + ", maalintekija=" + maalintekija + "]";
 	}
+
 	
-	
+
 	
 }
 

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+<title>Ottelulista</title>
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+
+	<h1>Ottelulista</h1>
+
+	<table class="table table-striped">
+		<tr>
+			<th>ID</th>
+			<th>Kello</th>
+			<th>Kotijoukkue</th>
+			<th>Vierasjoukkue</th>
+			<th>Tulos</th>
+			<th>Maalintekijät</th>
+			<th>Kenttä</th>
+			<th></th>
+			<th></th>
+		</tr>
+
+		<tr th:each="ottelu : ${ottelut}">
+			<td th:text="${ottelu.id}"></td>
+			<td th:text="${ottelu.kello}"></td>
+			<td th:text="${ottelu.kjoukkue}"></td>
+			<td th:text="${ottelu.vjoukkue}"></td>
+			<td th:text="${ottelu.tulos}"></td>
+			<td th:text="${ottelu.maalintekija}"></td>
+			<td th:text="${ottelu.kentta.name}"></td>
+			<td><a th:href="@{/poista/{id}(id=${ottelu.id})}"
+				class="btn btn-xs btn-danger">Delete</a></td>
+			<td sec:authorize="hasRole('ADMIN')"><a
+				th:href="@{/muokkaa/{id}(id=${ottelu.id})}">Edit</a></td>
+	</table>
+	<a class="btn btn-success" href="/lisaa"></a>

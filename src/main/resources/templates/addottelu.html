@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Jalkapallo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Lisää ottelu</h1>
+	<div>
+		<form th:object="${ottelu}" th:action="@{tallenna}" action="#"
+			method="post">
+			<label for="kello">Kellonaika</label> <input type="text" id="kello"
+				th:field="*{kello}" />
+
+			<div style="clear: both; display: block; height: 10px;"></div>
+
+			<label for="kjoukkue">Kotijoukkue</label> <input type="text"
+				id="kjoukkue" th:field="*{kjoukkue}" />
+
+			<div style="clear: both; display: block; height: 10px;"></div>
+
+
+			<label for="vjoukkue">Vierasjoukkue</label> <input type="text"
+				id="vjoukkue" th:field="*{vjoukkue}" />
+
+			<div style="clear: both; display: block; height: 10px;"></div>
+
+			<label for="tulos">Lopputulos</label> <input type="text" id="tulos"
+				th:field="*{tulos}" />
+
+			<div style="clear: both; display: block; height: 10px;"></div>
+
+			<label for="maalintekija">Maalintekijät:</label> <input type="text"
+				id="maalintekija" th:field="*{maalintekija}" />
+
+			<div style="clear: both; display: block; height: 10px;"></div>
+
+			<label for="deplist">Kenttä</label> <select id="deplist"
+				th:field="*{kentta}" class="form-control">
+				<option th:each="kentta: ${kentat}" th:value="${kentta.kenttaid}"
+					th:text="${kentta.nimi}">
+				<option>
+			</select>
+
+			<div style="clear: both; display: block; height: 10px;"></div>
+
+			<input type="submit" value="Tallenna"></input>
+
+
+
+
+
+
+
+
+
+
+
+
+		</form>
+	</div>
