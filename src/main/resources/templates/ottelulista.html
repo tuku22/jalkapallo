@@ -1,7 +1,33 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<style>
+h1 {
+	background-color: white;
+     text-align: center;
+}
 
+html, body {
+	background-image:
+		url("https://media.istockphoto.com/photos/striped-soccer-field-picture-id472347896?k=20&m=472347896&s=612x612&w=0&h=rLYy4-lp9h7LWi2MNtW8ntTpVuj3LIlup2nr7fAHlUE=");
+	height: 100%;
+}
+
+html {
+	display: table;
+	margin: auto;
+	background-color: white;
+}
+
+body {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+table {
+	background-color: white;
+}
+</style>
 <head>
 <title>Ottelulista</title>
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
@@ -13,7 +39,7 @@
 </head>
 <body>
 
-	<h1>Ottelulista</h1>
+	<h1>Ruolan Ritareiden Ottelulista</h1>
 
 	<table class="table table-striped">
 		<tr>
@@ -40,6 +66,5 @@
 			<td th:text="${ottelu.kentta.name}"></td>
 			<td><a th:href="@{/poista/{id}(id=${ottelu.id})}"
 				class="btn btn-xs btn-danger">Delete</a></td>
-		
 	</table>
 	<a class="btn btn-success" href="/lisaa">Lisaa ottelu</a>

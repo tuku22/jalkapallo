@@ -59,8 +59,8 @@ public class OtteluController {
 
 	// Poista ottelu
 	@RequestMapping(value = "/poista/{id}", method = RequestMethod.GET)
-	public String poistaOttelu(@PathVariable("id") int otteluId, Model model) {
-		repository.deleteById((long) otteluId);
+	public String poistaOttelu(@PathVariable("id") Long otteluId, Model model) {
+		repository.deleteById(otteluId);
 		return "redirect:../ottelulista";
 	}
 

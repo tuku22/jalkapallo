@@ -14,7 +14,7 @@ public class Ottelu {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Long id;
 	private String pvm;
 	private String kello;
 	private String kjoukkue;
@@ -31,7 +31,7 @@ public class Ottelu {
 		super();
 	}
 
-	public Ottelu(int id, String kello, String kjoukkue, String vjoukkue, String tulos, String maalintekija,
+	public Ottelu(Long id, String kello, String kjoukkue, String vjoukkue, String tulos, String maalintekija,
 			Kentta kentta) {
 		super();
 		this.id = id;
@@ -63,7 +63,7 @@ public class Ottelu {
 		this.pvm = pvm;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -83,7 +83,7 @@ public class Ottelu {
 		return maalintekija;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

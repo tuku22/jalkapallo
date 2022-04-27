@@ -16,7 +16,7 @@ public class Kentta {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int kenttaid;
+	private Long kenttaid;
 	private String name;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "kentta")
@@ -32,12 +32,12 @@ public class Kentta {
 		this.name = name;
 	}
 	
-	public Kentta (int kenttaid, String name) {
+	public Kentta (Long kenttaid, String name) {
 	this.kenttaid = kenttaid;
 	this.name = name;
 	}
 
-	public int getKenttaid() {
+	public Long getKenttaid() {
 		return kenttaid;
 	}
 
@@ -45,7 +45,7 @@ public class Kentta {
 		return name;
 	}
 
-	public void setKenttaid(int kenttaid) {
+	public void setKenttaid(Long kenttaid) {
 		this.kenttaid = kenttaid;
 	}
 
