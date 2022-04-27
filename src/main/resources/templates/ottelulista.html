@@ -18,6 +18,7 @@
 	<table class="table table-striped">
 		<tr>
 			<th>ID</th>
+			<th>Päivämäärä</th>
 			<th>Kello</th>
 			<th>Kotijoukkue</th>
 			<th>Vierasjoukkue</th>
@@ -30,6 +31,7 @@
 
 		<tr th:each="ottelu : ${ottelut}">
 			<td th:text="${ottelu.id}"></td>
+			<td th:text="${ottelu.pvm}"></td>
 			<td th:text="${ottelu.kello}"></td>
 			<td th:text="${ottelu.kjoukkue}"></td>
 			<td th:text="${ottelu.vjoukkue}"></td>
@@ -38,7 +40,6 @@
 			<td th:text="${ottelu.kentta.name}"></td>
 			<td><a th:href="@{/poista/{id}(id=${ottelu.id})}"
 				class="btn btn-xs btn-danger">Delete</a></td>
-			<td sec:authorize="hasRole('ADMIN')"><a
-				th:href="@{/muokkaa/{id}(id=${ottelu.id})}">Edit</a></td>
+		
 	</table>
-	<a class="btn btn-success" href="/lisaa"></a>
+	<a class="btn btn-success" href="/lisaa">Lisaa ottelu</a>

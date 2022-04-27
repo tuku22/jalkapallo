@@ -1,7 +1,7 @@
 package com.example.Jalkapallo.web;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,65 +17,53 @@ import com.example.Jalkapallo.domain.OtteluRepository;
 
 @Controller
 public class OtteluController {
-	
+
 	@Autowired
 	private OtteluRepository repository;
-	
+
 	@Autowired
 	private KenttaRepository krepository;
-	
-	@RequestMapping(value= {"/", "/ottelulista"})
+
+	@RequestMapping(value = { "/", "/ottelulista" })
 	public String otteluList(Model model) {
-	model.addAttribute("ottelut", repository.findAll());
-	return "ottelulista";
+		model.addAttribute("ottelut", repository.findAll());
+		return "ottelulista";
 	}
-	
-	//Rest-palvelu saadakseen kaikki ottelun
-	 @RequestMapping(value="/ottelut", method = RequestMethod.GET)
-	 public @ResponseBody List<Ottelu> otteluListRest() {
-		 return (List<Ottelu>) repository.findAll();
-	 }
-	 
-	 //Rest-palvelu saadakseen ottelu ID:llä
-	  @RequestMapping(value="/ottelu/{id}", method= RequestMethod.GET)
-	  public @ResponseBody Optional<Ottelu> findOtteluRest(@PathVariable("id") Long otteluId) {
-		  return repository.findById(otteluId);
-	  }
-	 
-	 //Lisää ottelu
-	  @RequestMapping("/lisaa")
-	  public String lisaaOttelu(Model model) {
-		  model.addAttribute("ottelu", new Ottelu());
-		  model.addAttribute("kentat", krepository.findAll());
-		  return "addottelu.html";
-	  }
-	  
-	  //Tallenna ottelu
-	  @RequestMapping(value = "/tallenna", method = RequestMethod.POST)
-	  public String tallenna (Ottelu ottelu) {
-		  repository.save(ottelu);
-		  return "redirect:ottelulista";
-	  }
-	 
-	 //Poista ottelu
-	  @RequestMapping(value = "/poista", method = RequestMethod.GET)
-	  public String poistaOttelu(@PathVariable("id") Long otteluId, Model model) {
-	  repository.deleteById(otteluId);
-	  return "redirect:../ottelulista";
-	  }
-	  
-	  //Muokkaa ottelua
-	  @RequestMapping("/muokkaa/{id}")
-	  public String muokkaaOttelu(@PathVariable("id") Long otteluId, Model model) {
-		  model.addAttribute("ottelu", repository.findById(otteluId));
-		  model.addAttribute("kentat", krepository.findAll());
-		  return "editottelu.html";
-	  }
-	  
+
+	// Rest-palvelu saadakseen kaikki ottelun
+	@RequestMapping(value = "/ottelut", method = RequestMethod.GET)
+	public @ResponseBody List<Ottelu> otteluListRest() {
+		return (List<Ottelu>) repository.findAll();
+	}
+
+	// Rest-palvelu saadakseen ottelu ID:llä
+	@RequestMapping(value = "/ottelu/{id}", method = RequestMethod.GET)
+	public @ResponseBody List<Ottelu> findOtteluRest(@PathVariable("id") int otteluId) {
+		return repository.findById(otteluId);
+	}
+
+	// Lisää ottelu
+	@RequestMapping("/lisaa")
+	public String lisaaOttelu(Model model) {
+		model.addAttribute("ottelu", new Ottelu());
+		model.addAttribute("kentat", krepository.findAll());
+		return "addottelu.html";
+	}
+
+	// Tallenna ottelu
+	@RequestMapping(value = "/tallenna", method = RequestMethod.POST)
+	public String tallenna(Ottelu ottelu) {
+		repository.save(ottelu);
+		return "redirect:ottelulista";
+	}
+
+	// Poista ottelu
+	@RequestMapping(value = "/poista/{id}", method = RequestMethod.GET)
+	public String poistaOttelu(@PathVariable("id") int otteluId, Model model) {
+		repository.deleteById((long) otteluId);
+		return "redirect:../ottelulista";
+	}
+
 
 
 }
-	 
-	 
-	 
-

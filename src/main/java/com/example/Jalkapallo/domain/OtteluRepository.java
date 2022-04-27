@@ -9,5 +9,4 @@ public interface OtteluRepository extends CrudRepository <Ottelu, Long> {
 	
 	List<Ottelu> findById(int Id);
 
-
 }

@@ -1,4 +1,4 @@
- package com.example.Jalkapallo.domain;
+package com.example.Jalkapallo.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,31 +9,30 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
 @Entity
 public class Ottelu {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	private String pvm;
 	private String kello;
 	private String kjoukkue;
 	private String vjoukkue;
-	private int tulos;
+	private String tulos;
 	private String maalintekija;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "kenttaid")
 	@JsonIgnoreProperties("ottelut")
 	private Kentta kentta;
 
-	
-
 	public Ottelu() {
 		super();
 	}
 
-	public Ottelu(int id, String kello, String kjoukkue, String vjoukkue, int tulos, String maalintekija, Kentta kentta) {
+	public Ottelu(int id, String kello, String kjoukkue, String vjoukkue, String tulos, String maalintekija,
+			Kentta kentta) {
 		super();
 		this.id = id;
 		this.kello = kello;
@@ -43,15 +42,25 @@ public class Ottelu {
 		this.maalintekija = maalintekija;
 		this.kentta = kentta;
 	}
-	
-	public Ottelu(String kello, String kjoukkue, String vjoukkue, int tulos, String maalintekija, Kentta kentta) {
+
+	public Ottelu(String pvm, String kello, String kjoukkue, String vjoukkue, String tulos, String maalintekija,
+			Kentta kentta) {
 		super();
+		this.pvm = pvm;
 		this.kello = kello;
 		this.kjoukkue = kjoukkue;
 		this.vjoukkue = vjoukkue;
 		this.tulos = tulos;
 		this.maalintekija = maalintekija;
 		this.kentta = kentta;
+	}
+
+	public String getPvm() {
+		return pvm;
+	}
+	
+	public void setPvm(String pvm) {
+		this.pvm = pvm;
 	}
 
 	public int getId() {
@@ -66,10 +75,9 @@ public class Ottelu {
 		return vjoukkue;
 	}
 
-	public int getTulos() {
+	public String getTulos() {
 		return tulos;
 	}
-
 
 	public String getMaalintekija() {
 		return maalintekija;
@@ -87,16 +95,14 @@ public class Ottelu {
 		this.vjoukkue = vjoukkue;
 	}
 
-	public void setTulos(int tulos) {
+	public void setTulos(String tulos) {
 		this.tulos = tulos;
 	}
-
-
 
 	public void setMaalintekija(String maalintekija) {
 		this.maalintekija = maalintekija;
 	}
-	
+
 	public String getKello() {
 		return kello;
 	}
@@ -105,6 +111,13 @@ public class Ottelu {
 		this.kello = kello;
 	}
 
+	public void setKentta(Kentta kentta) {
+		this.kentta = kentta;
+	}
+
+	public Kentta getKentta() {
+		return kentta;
+	}
 
 	@Override
 	public String toString() {
@@ -112,9 +125,4 @@ public class Ottelu {
 				+ ", kentta=" + kentta + ", maalintekija=" + maalintekija + "]";
 	}
 
-	
-
-	
 }
-
-

@@ -11,6 +11,9 @@
 	<div>
 		<form th:object="${ottelu}" th:action="@{tallenna}" action="#"
 			method="post">
+			<label for="pvm">Päivämäärä</label> <input type="text" id="pvm"
+				th:field="*{pvm}" />
+			
 			<label for="kello">Kellonaika</label> <input type="text" id="kello"
 				th:field="*{kello}" />
 
@@ -37,11 +40,10 @@
 
 			<div style="clear: both; display: block; height: 10px;"></div>
 
-			<label for="deplist">Kenttä</label> <select id="deplist"
+			<label for="kenttalist">Kenttä</label> <select id="kenttalist"
 				th:field="*{kentta}" class="form-control">
 				<option th:each="kentta: ${kentat}" th:value="${kentta.kenttaid}"
-					th:text="${kentta.nimi}">
-				<option>
+					th:text="${kentta.name}"> </option> 
 			</select>
 
 			<div style="clear: both; display: block; height: 10px;"></div>
